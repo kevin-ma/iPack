@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <title><%= title %> - <%=website.webname() %></title>
+    <link href='/stylesheets/bootstrap.css' rel="stylesheet" type="text/css" />
+    <link href='/stylesheets/style.css' rel="stylesheet" type="text/css" />
+    <style>
+        .navbar-default {
+            background-color: #2E3842;
+        }
+        .navbar-default .navbar-brand {
+            color: #FFF;
+        }
+        .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+            color: #FFF;
+            background-color: transparent;
+        }
+        .navbar-default .navbar-nav > li > a {
+            color: #FFF;
+        }
+        .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+            color: rgba(255, 255, 255, .5);
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-top: -10px;
+        }
+        .logo-text {
+            margin-top: -27px;
+            margin-left: 50px;
+            color: #e9e9e9;
+        }
+        html,body {
+            height: 100%;
+        }
+        .linear {
+            background: #ebebeb;
+        }
+        .platform-logo
+        {
+            width: 16px;
+            height: 16px;
+        }
+        .platform-name
+        {
+            color: #515151;
+            margin-top: 4px;
+        }
+        .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 80%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #ccc;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #fff;
+        }
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+    </style>
+</head>
+<body class="linear">
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand logo-row" href="#">
+                    <img class="logo" src="<%=website.logo()%>" alt="logo"/>
+                    <p class="logo-text"><%=website.webname() %></p>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/user/login">登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div id="tip-view-s" class="alert alert-success navbar-fixed-top top-alert" style="display: none">
+    <p id="tip-text-s"></p>
+</div>
+<div id="tip-view-e" class="alert alert-warning navbar-fixed-top top-alert" style="display: none">
+    <p id="tip-text-e"></p>
+</div>
+<!--<div class="toolbar">-->
+<!--<a href="javascript:;" class="toolbar-item toolbar-item-code"><span class="toolbar-layer"></span></a>-->
+<!--<a href="javascript:;" class="toolbar-item toolbar-item-app"><span class="toolbar-layer"></span></a>-->
+<!--</div>-->
+<% if (success) { %>
+<div id="alert-view" class="alert alert-success navbar-fixed-top top-alert">
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= success %>
+</div>
+<% } %>
+<% if (error) { %>
+<div id="alert-view" class="alert alert-warning navbar-fixed-top top-alert">
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= error %>
+</div>
+<% } %>
+
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<div id="" class="" style="margin-top: 0px">
+    <div class="row main-container">
+        <div class="col-sm-2 left-menu-container">
+            <ul class="list-group">
+                <li class="list-group-item left-menu-item active"><a href="">个人中心</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">应用管理</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">发布记录</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">模块管理</a></li>
+                <li class="list-group-item left-menu-item"><a href="">仓库管理</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">版本库</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">用户管理</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">角色管理</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">钉钉机器人管理</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">文档中心</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">通用设置</a></li>
+                <li class="list-group-item left-menu-item active"><a href="">联系我们</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-10">
+            <%- body %>
+
+        </div>
+    </div>
+
+    <footer>
+        <div style="text-align: center;margin-top: 50px">
+            <p style="color: rgba(41,41,41,0.94);font-size: 12px">Powered by <a href="https://ipack.pub" target="_blank">iPack</a>&nbsp;<%= website.version() %>&nbsp;&nbsp;©&nbsp;2017&nbsp;<a style="color: rgba(41,41,41,0.8)" href="<%= website.url() %>" target="_blank"><%= website.webname() %></a></p>
+        </div>
+    </footer>
+</div>
+</body>
+
+<script language="JavaScript">
+    window.onload = function () {
+        setTimeout(hide, 1000);
+//        $('.toolbar-item-code .toolbar-layer').css("background-image","url(/qrcode?url=http://baidu.com)")
+    }
+    function hide() {
+        var alertView = window.document.getElementById('alert-view');
+        if (alertView) {
+            alertView.style.display = 'none';
+        }
+    }
+    function showSuccess(text) {
+        var alertView = window.document.getElementById('tip-view-s');
+        if (alertView) {
+            alertView.style.display = 'inline';
+            $("#tip-text-s").text('    ' + text);
+            setTimeout(function () {
+                alertView.style.display = 'none';
+            },1000);
+        }
+
+    }
+    function showError(text) {
+        var alertView = window.document.getElementById('tip-view-e');
+        if (alertView) {
+            alertView.style.display = 'inline';
+            $("#tip-text-e").text('    ' +text);
+            setTimeout(function () {
+                alertView.style.display = 'none';
+            },1000);
+        }
+
+    }
+
+    $('#none-permission-pa,#none-permission-pi,#none-permission-ma,#none-permission-mi').click(function () {
+        showError('对不起，您无权操作');
+    })
+</script>
+</html>

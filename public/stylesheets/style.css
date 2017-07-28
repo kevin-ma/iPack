@@ -1,0 +1,65 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.navbar-default {
+  border-color: rgba(41,41,41,0.8);
+}
+
+.main-container
+{
+  margin-left: -50px;
+  margin-right: 0;
+  background-color: #ebebeb;
+}
+
+.left-menu {
+  margin-left: 0;
+  border-radius: 0;
+  background-color: #ffffff;
+}
+
+.left-menu-container {
+  background-color: #ffffff;
+  padding: 0;
+  min-height: 800px;
+
+}
+
+.left-menu-item {
+  padding-left: 40px;
+  border-width: 0;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 0;
+  background-color: #ebebeb;
+}
+
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+  background-color: #ebebeb;
+}
+
+.left-menu-item > a {
+  padding: auto;
+  font-size: 14px;
+  color: #292929;
+  line-height: 20px;
+}
+
+.left-menu-item.active {
+  padding: auto;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #292929;
+}
+
+.left-menu-item.active > a {
+  padding: auto;
+  font-size: 14px;
+  color: #5393d9;
+}
