@@ -6,14 +6,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 let partials = require('express-partials');
 var session = require('express-session');
-
+let db = require('./util/database');
 // routers
 var index = require('./routes/index');
-var users = require('./routes/users');
+var user = require('./routes/user');
 var install = require('./routes/install');
 
 // config
 let website = require('./util/website');
+db.connect(function (err) {
+    if (err) console.log('连接数据库出错：' + err);
+});
+
+// model
+let userModel = require('./models/UserModel');
 
 var app = express();
 
@@ -62,29 +68,26 @@ app.use(function(req,res,next){
         }
         next();
     }
-    res.locals.user = null;
     if (req.session.uid) {
-        // Users.getbyId(req.session.uid,function (err,user) {
-        //     res.locals.user=user;
-        //     goNext();
-        // });
-        goNext();
+        userModel.getbyId(req.session.uid,function (err,user) {
+            res.locals.user=user;
+            goNext();
+        });
     } else  {
-        res.locals.user=null;
+        if (req.url.indexOf('/user/login') < 0) {
+            return res.redirect('/user/login');
+        }
         goNext();
     }
-
 });
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/user', user);
 app.use('/install', install);
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error(req.originalUrl + ' Not Found');
   err.status = 404;
   next(err);
 });

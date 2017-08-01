@@ -111,7 +111,19 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    <% if (user) { %>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <%= user.nickname %>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                    <% } else { %>
                     <li><a href="/user/login">登录</a></li>
+                    <% } %>
                 </ul>
             </div>
         </div>
@@ -123,10 +135,6 @@
 <div id="tip-view-e" class="alert alert-warning navbar-fixed-top top-alert" style="display: none">
     <p id="tip-text-e"></p>
 </div>
-<!--<div class="toolbar">-->
-<!--<a href="javascript:;" class="toolbar-item toolbar-item-code"><span class="toolbar-layer"></span></a>-->
-<!--<a href="javascript:;" class="toolbar-item toolbar-item-app"><span class="toolbar-layer"></span></a>-->
-<!--</div>-->
 <% if (success) { %>
 <div id="alert-view" class="alert alert-success navbar-fixed-top top-alert">
     &nbsp;&nbsp;&nbsp;&nbsp;<%= success %>
@@ -144,18 +152,17 @@
     <div class="row main-container">
         <div class="col-sm-2 left-menu-container">
             <ul class="list-group">
-                <li class="list-group-item left-menu-item active"><a href="">个人中心</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">应用管理</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">发布记录</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">模块管理</a></li>
-                <li class="list-group-item left-menu-item"><a href="">仓库管理</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">版本库</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">用户管理</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">角色管理</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">钉钉机器人管理</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">文档中心</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">通用设置</a></li>
-                <li class="list-group-item left-menu-item active"><a href="">联系我们</a></li>
+                <li class="list-group-item left-menu-item" id="home-item"><a href="/user/center/<%=user.nickname%>">概述</a></li>
+                <li class="list-group-item left-menu-item" id="userCenter-item"><a href="/user/center/<%=user.nickname%>">个人中心</a></li>
+                <li class="list-group-item left-menu-item" id="app-item"><a href="/user/center/<%=user.nickname%>">应用管理</a></li>
+                <li class="list-group-item left-menu-item" id="publish-item"><a href="/user/center/<%=user.nickname%>">发布记录</a></li>
+                <li class="list-group-item left-menu-item" id="component-item"><a href="/user/center/<%=user.nickname%>">模块管理</a></li>
+                <li class="list-group-item left-menu-item" id="git-item"><a href="/user/center/<%=user.nickname%>">仓库管理</a></li>
+                <li class="list-group-item left-menu-item" id="repo-item"><a href="/user/center/<%=user.nickname%>">版本库</a></li>
+                <li class="list-group-item left-menu-item" id="user-item"><a href="/user/center/<%=user.nickname%>">用户管理</a></li>
+                <li class="list-group-item left-menu-item" id="dingding-item"><a href="/user/center/<%=user.nickname%>">钉钉机器人管理</a></li>
+                <li class="list-group-item left-menu-item" id="setting-item"><a href="/user/center/<%=user.nickname%>">通用设置</a></li>
+                <li class="list-group-item left-menu-item" id="contact-item"><a href="/user/center/<%=user.nickname%>">联系我们</a></li>
             </ul>
         </div>
         <div class="col-sm-10">
@@ -173,9 +180,16 @@
 </body>
 
 <script language="JavaScript">
+    let item = '<%=ipack%>';
+    console.log('item is ' + item);
     window.onload = function () {
         setTimeout(hide, 1000);
-//        $('.toolbar-item-code .toolbar-layer').css("background-image","url(/qrcode?url=http://baidu.com)")
+
+        selectItem(item);
+    }
+
+    function selectItem(item) {
+        $(`#${item}-item`).addClass('active');
     }
     function hide() {
         var alertView = window.document.getElementById('alert-view');

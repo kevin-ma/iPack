@@ -1,0 +1,92 @@
+<style>
+    .content {
+        margin-top: 50px;
+    }
+    .form-horizontal {
+        margin: 2% 10% 5% 10%;
+        margin-right: 20%;
+    }
+    .content > p {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 36px;
+    }
+    .form-group > label > span {
+        color: red;
+    }
+    .form-group {
+        margin: 30px 0;
+    }
+    .app-icon {
+        max-width: 40px;
+    }
+</style>
+<div class="content row">
+    <p><%= title %></p>
+    <form id="edit-form" class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="url" class="col-sm-3 control-label"><span>*&nbsp;</span>网站地址</label>
+            <div class="col-sm-9">
+                <input type="text" name="url" class="form-control" id="url" placeholder="请输入网站地址，含端口">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="col-sm-3 control-label">网站名称</label>
+            <div class="col-sm-9">
+                <input type="text" name="name" class="form-control" id="name" placeholder="快来给网站起一个酷酷的名称">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">邮箱域名</label>
+            <div class="col-sm-9">
+                <input type="text" name="email" class="form-control" id="email" placeholder="请输入邮箱的域名地址，如ipack.pub">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="username" class="col-sm-3 control-label"><span>*&nbsp;</span>管理员账号</label>
+            <div class="col-sm-9">
+                <input type="text" name="username" class="form-control" id="username" placeholder="请输入管理员账号">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pwd" class="col-sm-3 control-label"><span>*&nbsp;</span>管理员密码</label>
+            <div class="col-sm-9">
+                <input type="text" name="pwd" class="form-control" id="pwd" placeholder="请输入管理员密码">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pwd" class="col-sm-3 control-label"><span>*&nbsp;</span>管理员密码</label>
+            <div class="col-sm-9">
+                <input type="text" name="pwd_again" class="form-control" id="pwd_again" placeholder="请再次输入管理员密码">
+            </div>
+        </div>
+    </form>
+    <p>
+        <button id="submit-btn"  class="btn btn-success btn-lg btn-block" type="button" style="width: 20%;margin: auto">提交</button>
+    </p>
+
+</div>
+<script>
+    $('#submit-btn').click(function () {
+        let formdata = {
+            url : $('#url').val(),
+            name : $('#name').val(),
+            username : $('#username').val(),
+            pwd : $('#pwd').val(),
+            email : $('#email').val(),
+            pwdAgain : $('#pwd_again').val()
+        }
+        $.post('/install/other',formdata,function (data) {
+            if (data.code === 0) {
+                window.location.href = '/';
+            } else  {
+                showError(data.message);
+            }
+        })
+    });
+</script>

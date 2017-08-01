@@ -1,1 +1,110 @@
-<div style="height: 800px;background-color: #1b6d85"></div>
+<style>
+    .content {
+        margin-top: 50px;
+    }
+    .form-horizontal {
+        margin: 2% 10% 5% 10%;
+        margin-right: 20%;
+    }
+    .content > p {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 36px;
+    }
+    .form-group > label > span {
+        color: red;
+    }
+    .app-icon {
+        max-width: 40px;
+    }
+</style>
+<div class="content row">
+    <p><%= title %></p>
+    <form id="edit-form" class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="dbhost" class="col-sm-3 control-label">数据库主机</label>
+            <div class="col-sm-9">
+                <input type="text" value="localhost" name="dbhost" class="form-control" id="dbhost" placeholder="请输入数据库主机，留空则默认localhost">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="dbport" class="col-sm-3 control-label">数据库端口号</label>
+            <div class="col-sm-9">
+                <input type="text" value="27017" name="dbport" class="form-control" id="dbport" placeholder="请输入数据库端口号,留空默认27017">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="dbname" class="col-sm-3 control-label">数据库名</label>
+            <div class="col-sm-9">
+                <input type="text" value="iPack" name="dbname" class="form-control" id="dbname" placeholder="请输入数据库名，默认iPack">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="dbuname" class="col-sm-3 control-label">数据库用户名</label>
+            <div class="col-sm-9">
+                <input type="text" name="dbuname" class="form-control" id="dbuname" placeholder="请输入数据库用户名，如果没有请留空">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="dbupwd" class="col-sm-3 control-label">数据库密码</label>
+            <div class="col-sm-9">
+                <input type="text" name="dbupwd" class="form-control" id="dbupwd" placeholder="请输入数据库密码，如果没有请留空">
+            </div>
+        </div>
+    </form>
+    <p>
+        <button id="submit-btn"  class="btn btn-success btn-lg btn-block" type="button" style="width: 20%;margin: auto">提交</button>
+    </p>
+
+</div>
+<script>
+    $('#submit-btn').click(function () {
+        console.log('test');
+        let formdata = {
+            dbport : $('#dbport').val(),
+            dbname : $('#dbname').val(),
+            dbuname : $('#dbuname').val(),
+            dbhost : $('#dbhost').val(),
+            dbupwd : $('#dbupwd').val()
+        }
+        $.post('/install/database',formdata,function (data) {
+            console.log(data);
+            if (data.code === 0) {
+                window.location.href = '/install?step=2';
+            } else  {
+                showError(data.message);
+            }
+        })
+    });
+
+//    $(document).ready(function(){
+//        $("form").submit(function(e){
+//            e.preventDefault();
+//            var formdata = {
+//                url : $('#url').val(),
+//                dbport : $('#dbport').val(),
+//                dbname : $('#dbname').val(),
+//                dbuname : $('#dbuname').val(),
+//                dbhost : $('#dbhost').val(),
+//                dbupwd : $('#dbupwd').val(),
+//                port : $('#port').val(),
+//                pwd : $('#pwd').val(),
+//                username : $('#username').val()
+//            }
+//
+//            $.post('/install',formdata,function (data) {
+//                console.log(data);
+//
+//                if (data.code === 0) {
+//                    window.location.href = '/user/login';
+//                } else  {
+//                    showError(data.message);
+//                }
+//            })
+//        });
+//    });
+</script>

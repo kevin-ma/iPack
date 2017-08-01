@@ -9,28 +9,42 @@ let filePath = process.cwd() + '/config/website.conf.json';
 
 let website = {};
 
+var websiteInfo = null;
+
+function readFile() {
+    if (!websiteInfo) {
+        websiteInfo = JSON.parse(fs.readFileSync(filePath,'utf-8'));
+    }
+}
+
 website.webname = function () {
-    return web.name;
+    readFile();
+    return websiteInfo.name;
 };
 
 website.url = function () {
-    return web.url;
+    readFile();
+    return websiteInfo.url;
 };
 
 website.installed = function () {
-    return web.install;
+    readFile();
+    return websiteInfo.install;
 };
 
 website.email = function () {
-    return web.email;
+    readFile();
+    return websiteInfo.email;
 };
 
 website.logo = function () {
-    return web.logo;
+    readFile();
+    return websiteInfo.logo;
 };
 
 website.version = function () {
-    return web.version;
+    readFile();
+    return websiteInfo.version;
 };
 
 website.update = function (info,cb) {
@@ -41,15 +55,15 @@ website.update = function (info,cb) {
         return;
     }
     let newInfo = {
-        name : info.name || web.name,
-        url : info.url || web.url,
-        install : info.install || web.install,
-        email : info.email || web.email,
-        version : web.version,
-        logo : info.logo || web.logo
+        name : info.name || website.webname(),
+        url : info.url || website.url(),
+        install : info.install || website.installed(),
+        email : info.email || website.email(),
+        version : website.version(),
+        logo : info.logo || website.logo()
     };
     fs.writeFile(filePath,JSON.stringify(newInfo),(err) => {
-        delete require.cache[require.resolve('../config/website.conf.json')];
+        websiteInfo = null;
         if (cb) {
             cb(err);
         }

@@ -10,6 +10,8 @@ mongoose.Promise = global.Promise;
 
 let database = {};
 
+database.modelMaker = mongoose;
+
 database.host = function () {
     return dbConfig.host;
 };

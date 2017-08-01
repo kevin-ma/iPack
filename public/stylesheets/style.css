@@ -31,12 +31,9 @@ a {
 
 }
 
-.left-menu-item {
-  padding-left: 40px;
-  border-width: 0;
-  height: 40px;
-  line-height: 40px;
-  border-radius: 0;
+.left-menu-item.active {
+  padding: auto;
+  font-size: 14px;
   background-color: #ebebeb;
 }
 
@@ -44,22 +41,26 @@ a {
   background-color: #ebebeb;
 }
 
-.left-menu-item > a {
-  padding: auto;
-  font-size: 14px;
-  color: #292929;
-  line-height: 20px;
-}
-
-.left-menu-item.active {
-  padding: auto;
-  font-size: 14px;
-  background-color: #ffffff;
-  color: #292929;
-}
-
 .left-menu-item.active > a {
   padding: auto;
   font-size: 14px;
+  color: #292929;
+}
+
+.left-menu-item {
+
+  background-color: #ffffff;
+  color: #292929;
+  padding-left: 40px;
+  border-width: 0;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 0;
+}
+
+.left-menu-item > a {
+  padding: auto;
+  font-size: 14px;
   color: #5393d9;
+  line-height: 20px;
 }
