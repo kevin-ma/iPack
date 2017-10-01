@@ -11,7 +11,6 @@ let Components = model.createModel({
     gitUrl : String,
     gitBranch:String,
     repo : {type :model.objId,ref:'Repos'},
-    sendEmails : {type:}
     updateAt:{type:Number,default:model.DTI},
     createAt : {type : Number,default:model.DTI}
 },'Components');

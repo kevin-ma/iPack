@@ -1,0 +1,26 @@
+<div style="margin: 5% 20%;min-width: 280px">
+    <div class="form-group">
+        <label class="control-label">基本信息</label>
+    </div>
+    <div>
+        <div class="form-group">
+            <label class="control-label" for="username">用户名</label>
+            <input type="text" name="username" id="username" placeholder="加载中" value="<%= user.username%>" class="form-control" disabled>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="email">邮箱</label>
+            <div class="input-group">
+                <!--<input type="text" class="form-control">-->
+                <input type="text" class="form-control" id="email" placeholder="加载中" value="<%= user.email%>" disabled>
+                <span class="input-group-addon">@<%= website.email()%></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="nickname">昵称</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="nickname" value="<%= user.nickname%>" placeholder="请输入昵称">
+                <span class="input-group-btn"><button id="update-btn" class="btn btn-success" type="button">修改</button></span>
+            </div>
+        </div>
+    </div>
+</div>
